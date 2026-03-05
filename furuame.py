@@ -46,14 +46,14 @@ def adjust_color(canvas, color, depth):
     return "#%02x%02x%02x" % (int(r * 255), int(g * 255), int(b * 255))
 
 
-class JLPTRain:
+class FuruAme:
     """Tkinter app that scrolls JLPT vocabulary words across the screen in a
     depth-layered rain effect. Words are clickable and open Jisho.org for lookup.
     Press 1–5 to switch between JLPT levels N5–N1."""
 
     def __init__(self, root):
         self.root = root
-        self.root.title("JLPT Rain")
+        self.root.title("FuruAme - 降る雨")
         self.canvas = tk.Canvas(root, bg="black")
         self.canvas.pack(fill=tk.BOTH, expand=True)
         self.items = []
@@ -141,6 +141,6 @@ class JLPTRain:
 
 if __name__ == "__main__":
     root = tk.Tk()
-    app = JLPTRain(root)
+    app = FuruAme(root)
     root.mainloop()
 

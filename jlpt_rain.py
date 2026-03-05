@@ -1,8 +1,9 @@
-import tkinter as tk
-import random
 import os
-from urllib.parse import quote
+import random
 import webbrowser
+from urllib.parse import quote
+
+import tkinter as tk
 
 # ===== CONFIGURATION =====
 BASE_FONT_SIZE = 24
@@ -33,6 +34,7 @@ def load_words(filename):
     with open(filename, "r", encoding="utf-8") as f:
         return [line.strip() for line in f if line.strip()]
 
+
 def adjust_color(canvas, color, depth):
     """Adjust color brightness based on depth factor (0.5=far, 1=near)."""
     rgb = canvas.winfo_rgb(color)
@@ -40,12 +42,13 @@ def adjust_color(canvas, color, depth):
     r *= depth
     g *= depth
     b *= depth
-    return "#%02x%02x%02x" % (int(r*255), int(g*255), int(b*255))
+    return "#%02x%02x%02x" % (int(r * 255), int(g * 255), int(b * 255))
 
-class ScrollerApp:
+
+class JLPTRain:
     def __init__(self, root):
         self.root = root
-        self.root.title("3D Color Kanji Scroller")
+        self.root.title("JLPT Rain")
         self.canvas = tk.Canvas(root, bg="black")
         self.canvas.pack(fill=tk.BOTH, expand=True)
         self.items = []
@@ -59,7 +62,6 @@ class ScrollerApp:
             10, 10, text=self.current_level, fill="grey", anchor="nw", font=("Helvetica", 10, "bold")
         )
 
-        # Bind keys for JLPT switching
         self.root.bind("<Key>", self.key_press)
 
         self.root.after(INTERVAL, self.spawn_word)
@@ -68,13 +70,14 @@ class ScrollerApp:
     def key_press(self, event):
         key = event.char
         if key in JLPT_FILES:
+            level = JLPT_FILES[key].replace(".txt", "")
             new_words = load_words(JLPT_FILES[key])
             if new_words:
                 self.words = new_words
-                self.current_level = JLPT_FILES[key].replace(".txt", "")
-                self.canvas.itemconfig(self.overlay, text=self.current_level)
+                self.current_level = level
+                self.canvas.itemconfig(self.overlay, text=level)
             else:
-                self.canvas.itemconfig(self.overlay, text=f"{JLPT_FILES[key].replace('.txt', '')} (not found)")
+                self.canvas.itemconfig(self.overlay, text=f"{level} (not found)")
 
     def get_jisho_url(self, word):
         return f"https://jisho.org/search/{quote(word)}"
@@ -96,18 +99,15 @@ class ScrollerApp:
             y = lane * lane_height + lane_height // 2
             depth = LANE_DEPTH[lane]
 
-            # Color dimmed based on depth
             color = adjust_color(self.canvas, random.choice(COLORS), depth)
             speed = random.uniform(1, 3) * depth  # faster for closer lanes
             x_offset = random.randint(0, 50)
 
-            # Create the word item on the canvas
             item = self.canvas.create_text(
                 width + x_offset, y,
                 text=word, fill=color, font=("Helvetica", BASE_FONT_SIZE, "bold"), anchor="w"
             )
 
-            # Store the item and speed
             self.items.append((item, speed))
 
             self.canvas.tag_bind(item, "<Button-1>", lambda e, w=word: self.get_jisho(e, w))
@@ -129,8 +129,9 @@ class ScrollerApp:
 
         self.root.after(30, self.animate)
 
+
 if __name__ == "__main__":
     root = tk.Tk()
-    app = ScrollerApp(root)
+    app = JLPTRain(root)
     root.mainloop()
 

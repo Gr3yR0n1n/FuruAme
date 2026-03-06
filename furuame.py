@@ -21,11 +21,11 @@ LANE_DEPTH = [0.5 + (i / (LANE_COUNT - 1)) * 0.5 for i in range(LANE_COUNT)]
 
 # Mapping keys to JLPT files
 JLPT_FILES = {
-    "1": "JLPT-N5.txt",
-    "2": "JLPT-N4.txt",
+    "5": "JLPT-N5.txt",
+    "4": "JLPT-N4.txt",
     "3": "JLPT-N3.txt",
-    "4": "JLPT-N2.txt",
-    "5": "JLPT-N1.txt"
+    "2": "JLPT-N2.txt",
+    "1": "JLPT-N1.txt"
 }
 
 def load_words(filename):

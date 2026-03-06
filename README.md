@@ -28,11 +28,11 @@ python furuame.py
 
 | Key | Level | Description |
 |-----|-------|-------------|
-| `1` | JLPT N5 | Beginner. ~800 words, basic kanji such as 日, 本, 人 |
-| `2` | JLPT N4 | Elementary. ~1,500 words, everyday vocabulary and kanji |
+| `5` | JLPT N5 | Beginner. ~800 words, basic kanji such as 日, 本, 人 |
+| `4` | JLPT N4 | Elementary. ~1,500 words, everyday vocabulary and kanji |
 | `3` | JLPT N3 | Intermediate. ~3,750 words, broader kanji and grammar |
-| `4` | JLPT N2 | Upper intermediate. ~6,000 words, newspaper-level kanji |
-| `5` | JLPT N1 | Advanced. ~10,000 words, complex and literary kanji such as 憂, 鬱 |
+| `2` | JLPT N2 | Upper intermediate. ~6,000 words, newspaper-level kanji |
+| `1` | JLPT N1 | Advanced. ~10,000 words, complex and literary kanji such as 憂, 鬱 |
 
 Click any word to open its Jisho.org dictionary entry.
 
